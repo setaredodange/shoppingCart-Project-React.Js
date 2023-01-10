@@ -25,6 +25,9 @@ constructor(props){
 
     }
 this.addProductToCart=this.addProductToCart.bind(this)
+this.emptyShoppingCart=this.emptyShoppingCart.bind(this)
+this.removeProductFromCart=this.removeProductFromCart.bind(this)
+
     
 }
 addProductToCart(productId){
@@ -39,6 +42,21 @@ addProductToCart(productId){
             shoppingCart : [ ...prevState.shoppingCart, mainProduct]
         }
     })
+}
+emptyShoppingCart(){
+  this.setState({
+    shoppingCart:[]
+  })
+}
+
+removeProductFromCart(productId){
+  console.log(productId);
+  let newShoppingCart = this.state.shoppingCart.filter (product => {
+    return product.id !== productId
+  })
+  this.setState ({
+    shoppingCart : newShoppingCart
+  })
 }
    
 
@@ -71,7 +89,7 @@ addProductToCart(productId){
        </div>
        <div class="cart-items">
         {this.state.shoppingCart.map(product => (
-           <Cart {...product}/>
+           <Cart {...product} onRemove={this.removeProductFromCart}/>
         ))}
        
  
@@ -81,7 +99,7 @@ addProductToCart(productId){
          <strong class="cart-total-title">Total</strong>
          <span class="cart-total-price"> $0</span> 
        </div>
-       <button class="btn btn-primary btn-purchase" id="remove-all-products" type="button">
+       <button class="btn btn-primary btn-purchase" id="remove-all-products" type="button" onClick={this.emptyShoppingCart}>
          Empty Cart
        </button>
      
