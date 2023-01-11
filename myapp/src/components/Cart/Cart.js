@@ -18,7 +18,8 @@ export default class Cart extends Component {
     </div>
     <span class= "cart-price cart-column"> $ {price}</span>
     <div class="cart-quantity cart-column">
-      <button class="btn ntn-danger" type="button" onClick={this.clickHandler.bind(this, id)}>remove</button> 
+      <button class="btn ntn-danger" type="button" 
+      onClick={this.clickHandler.bind(this, id)}>remove</button> 
       </div>
 
     
